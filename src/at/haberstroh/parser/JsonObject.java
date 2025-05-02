@@ -8,23 +8,49 @@ import at.haberstroh.lexer.Token;
 import at.haberstroh.lexer.Tokentype;
 
 import java.text.ParseException;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.logging.Logger;
+
+import static at.haberstroh.parser.JsonParser.LOG_URL;
 
 public class JsonObject extends AbstractJsonExpression {
+    Logger logger = Logger.getLogger(LOG_URL);
     private final Map<String, AbstractJsonExpression> members = new LinkedHashMap<>();
 
-    public void parse() {
-        // FIXME: Implement object parsing here
+    /*
+    <JSON> ::= <Object>
+    <Object> ::= '{' <pairList> '}'
+    <pairList> ::= <pair> | <pair> ',' <pairList>
+    <pair> ::= string ':' value
+    <value> ::= string | number | object
+     */
+    public void parse() throws ParseException {
+        if(position <= tokens.size()){
+           logger.info(String.valueOf(tokens.get(position)));
+           if(tokens.get(position).getType() != Tokentype.LEFT_BRACE){
+               logger.severe("Wrong Syntax! No left Brace at beginning");
+               throw new ParseException("unexpected end", position);
+
+           }
+           position ++;
+           JsonPairList jsonPairList = new JsonPairList();
+           jsonPairList.parse();
+           members.putAll(jsonPairList.getMembers());
+
+
+
+           if( position < tokens.size() && tokens.get(position).getType() != Tokentype.RIGHT_BRACE){
+               logger.severe("Wrong Syntax! No right Brace");
+               throw new ParseException("unexpected end", position);
+           }
+           position++;
+
+        }
     }
 
-    public void add(String key, AbstractJsonExpression value) {
-        members.put(key, value);
-    }
 
     @Override
     public Object interpret() {

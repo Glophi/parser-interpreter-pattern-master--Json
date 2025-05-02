@@ -9,11 +9,12 @@ public class JsonString extends AbstractJsonExpression {
     @Override
     public void parse() throws ParseException {
         // TODO: STRING-Token lesen und als value speichern
+        value = tokens.get(position).getToken();
     }
 
     @Override
     public Object interpret() {
         // TODO: return value;
-        return null;
+        return value;
     }
 }

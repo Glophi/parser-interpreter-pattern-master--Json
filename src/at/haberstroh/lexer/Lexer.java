@@ -75,7 +75,8 @@ public class Lexer {
         return new Token(Tokentype.NUMBER, text);
     }
     public static void main(String[] args) {
-        String input = "{\"name\": \"John\", \"age\": 42}";
+        String input = "{\"name\":\"John\",\"age\":42,\"address\":{\"street\":\"Main Street\",\"number\":42,\"city\":\"Vienna\"}}";
+
         Lexer lexer = new Lexer(input);
         List<Token> tokens = lexer.tokenize();
         System.out.println(tokens);

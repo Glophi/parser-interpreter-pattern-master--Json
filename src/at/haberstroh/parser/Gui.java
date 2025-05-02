@@ -13,8 +13,13 @@ import at.haberstroh.parser.JsonParser;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.logging.Logger;
+
+import static at.haberstroh.parser.JsonParser.LOG_URL;
 
 public class Gui extends JFrame {
+
+    Logger logger = Logger.getLogger(LOG_URL);
 
     private final JTextArea inputArea;
     private final JButton parseButton;
@@ -46,6 +51,7 @@ public class Gui extends JFrame {
         parseButton.addActionListener(this::handleParse);
 
         setVisible(true);
+        logger.info("Started GUI");
     }
 
     private void handleParse(ActionEvent e) {
@@ -53,7 +59,7 @@ public class Gui extends JFrame {
         outputArea.setText("");
 
         try {
-            // 👉 Du sollst hier den JsonParser einbinden
+
             Object result = JsonParser.parse(input);
             outputArea.setText(result.toString());
         } catch (Exception ex) {
