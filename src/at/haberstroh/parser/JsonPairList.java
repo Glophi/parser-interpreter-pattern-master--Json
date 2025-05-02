@@ -9,7 +9,7 @@ package at.haberstroh.parser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonPairList {
+public class JsonPairList extends AbstractJsonExpression {
     private final List<JsonPair> pairs = new ArrayList<>();
 
 
