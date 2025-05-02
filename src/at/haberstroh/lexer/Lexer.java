@@ -1,19 +1,5 @@
-/*
- * Lexer.java
- * 2019-12-05 Harald. R. Haberstroh
- */
 package at.haberstroh.lexer;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.io.StreamTokenizer;
-import java.io.StringReader;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.regex.Pattern;
-
-import static at.haberstroh.lexer.Tokentype.*;
-import static java.io.StreamTokenizer.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,51 +50,35 @@ public class Lexer {
     }
 
     private Token readString() {
-        int start = ++pos;
+        int start = ++pos; // Skip opening quote
         while (pos < input.length() && input.charAt(pos) != '"') {
             pos++;
         }
         String text = input.substring(start, pos);
-        pos++; // skip closing quote
+        pos++; // Skip closing quote
         return new Token(Tokentype.STRING, text);
     }
 
     private Token readNumber() {
         int start = pos;
-        while (pos < input.length() &&
-                (Character.isDigit(input.charAt(pos)) || input.charAt(pos) == '.' || input.charAt(pos) == '-')) {
+        if (input.charAt(pos) == '-') pos++;
+        while (pos < input.length() && Character.isDigit(input.charAt(pos))) {
             pos++;
+        }
+        if (pos < input.length() && input.charAt(pos) == '.') {
+            pos++;
+            while (pos < input.length() && Character.isDigit(input.charAt(pos))) {
+                pos++;
+            }
         }
         String text = input.substring(start, pos);
         return new Token(Tokentype.NUMBER, text);
     }
-
     public static void main(String[] args) {
-        // Beispiel-Testdaten (verschiedene Fälle)
-        String[] examples = {
-                "{\"name\":\"Alice\",\"age\":30}",
-                "{\"x\": -12.5, \"y\": 3.14}",
-                "{\"nested\": {\"key\": \"value\"}}",
-                "{\"text\": \"Hello World\"}",
-                "{\"invalid\"=42}" // Dieser wird einen Fehler auslösen
-        };
-
-        for (int i = 0; i < examples.length; i++) {
-            System.out.println("=== Beispiel " + (i + 1) + " ===");
-            String input = examples[i];
-            System.out.println("Input: " + input);
-
-            try {
-                Lexer lexer = new Lexer(input);
-                List<Token> tokens = lexer.tokenize();
-                for (Token token : tokens) {
-                    System.out.println(token);
-                }
-            } catch (RuntimeException e) {
-                System.out.println("❌ Fehler beim Tokenisieren: " + e.getMessage());
-            }
-
-            System.out.println();
-        }
+        String input = "{\"name\": \"John\", \"age\": 42}";
+        Lexer lexer = new Lexer(input);
+        List<Token> tokens = lexer.tokenize();
+        System.out.println(tokens);
     }
+
 }
