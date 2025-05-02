@@ -29,8 +29,9 @@ public abstract class AbstractJsonExpression {
     }
 
     protected boolean match(String symbol) {
-        return current().text.equals(symbol);
+        return current().getToken().equals(symbol);
     }
+
 
     public abstract Object interpret();
 }
