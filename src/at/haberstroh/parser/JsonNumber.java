@@ -14,10 +14,13 @@ import java.util.Map;
 
 
 public class JsonNumber extends AbstractJsonExpression {
-    private final double value;
+    private final double value = 0;
 
-    public JsonNumber(String text) {
-        this.value = Double.parseDouble(text);
+
+
+    @Override
+    public void parse() throws ParseException {
+
     }
 
     @Override

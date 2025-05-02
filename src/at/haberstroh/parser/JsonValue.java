@@ -15,10 +15,13 @@ import java.util.Map;
 
 
 public class JsonValue extends AbstractJsonExpression {
-    private final AbstractJsonExpression inner;
+    private final AbstractJsonExpression inner = null;
 
-    public JsonValue(AbstractJsonExpression inner) {
-        this.inner = inner;
+
+
+    @Override
+    public void parse() throws ParseException {
+
     }
 
     @Override

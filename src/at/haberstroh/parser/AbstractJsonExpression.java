@@ -33,6 +33,8 @@ public abstract class AbstractJsonExpression {
     }
 
 
+    public abstract void parse() throws ParseException;
+
     public abstract Object interpret();
 }
 

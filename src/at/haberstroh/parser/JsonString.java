@@ -12,10 +12,13 @@ import java.util.List;
 import java.util.Map;
 
 public class JsonString extends AbstractJsonExpression {
-    private final String value;
+    private final String value = null;
 
-    public JsonString(String value) {
-        this.value = value;
+
+
+    @Override
+    public void parse() throws ParseException {
+
     }
 
     @Override
