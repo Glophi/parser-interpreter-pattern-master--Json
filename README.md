@@ -17,7 +17,7 @@ TODO
 
 ## 📋 Aufgabenstellung
 
-Analysieren und interpretieren Sie Texte wie diesen:
+Analysieren und interpretieren Sie Texte wie diesen und geben Sie ihn in der GUI aus:
 
 ```json
 {
