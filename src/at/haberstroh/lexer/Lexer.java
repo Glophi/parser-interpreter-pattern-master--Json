@@ -82,4 +82,33 @@ public class Lexer {
         String text = input.substring(start, pos);
         return new Token(Tokentype.NUMBER, text);
     }
+
+    public static void main(String[] args) {
+        // Beispiel-Testdaten (verschiedene Fälle)
+        String[] examples = {
+                "{\"name\":\"Alice\",\"age\":30}",
+                "{\"x\": -12.5, \"y\": 3.14}",
+                "{\"nested\": {\"key\": \"value\"}}",
+                "{\"text\": \"Hello World\"}",
+                "{\"invalid\"=42}" // Dieser wird einen Fehler auslösen
+        };
+
+        for (int i = 0; i < examples.length; i++) {
+            System.out.println("=== Beispiel " + (i + 1) + " ===");
+            String input = examples[i];
+            System.out.println("Input: " + input);
+
+            try {
+                Lexer lexer = new Lexer(input);
+                List<Token> tokens = lexer.tokenize();
+                for (Token token : tokens) {
+                    System.out.println(token);
+                }
+            } catch (RuntimeException e) {
+                System.out.println("❌ Fehler beim Tokenisieren: " + e.getMessage());
+            }
+
+            System.out.println();
+        }
+    }
 }
