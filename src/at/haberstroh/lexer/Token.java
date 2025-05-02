@@ -17,5 +17,19 @@ public class Token {
     public String toString() {
         return type + "('" + text + "')";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Token)) return false;
+        Token token = (Token) o;
+        return type == token.type && text.equals(token.text);
+    }
+
+    @Override
+    public int hashCode() {
+        return type.hashCode() * 31 + text.hashCode();
+    }
+
 }
 
