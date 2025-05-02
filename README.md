@@ -1,28 +1,29 @@
-# Skeleton Parser Interpreter Pattern
+# 🧩 JSON Parser & Interpreter – Recursive Descent Parser (Matura-Projekt)
 
-Simple Parser and Interpreter (implemented with Interpreter Pattern)
+## 🎯 Zielsetzung
 
-## Simple Expressions
+In diesem Projekt soll ein einfacher **Parser und Interpreter für JSON-Daten** in Java entwickelt werden.  
+Ziel ist es, einen **rekursiven AbstiegspParser** (Recursive Descent Parser) zu implementieren, der einfache JSON-Objekte analysiert und sie mithilfe des **Interpreter-Patterns** in eine Java-Objektstruktur (z. B. `Map<String, Object>`) überführt.
 
-Something like `3.14*(2.0*sqrt(-3*-12.3)+12)`
+Die Eingabe erfolgt als String in JSON-Syntax, das Ergebnis ist eine verschachtelte Java-Datenstruktur, mit der man programmgesteuert weiterarbeiten kann.
 
-```
-<Expression> ::= <Term> | <Term> ('+' | '-') <Expression>
-<Term> ::= <Factor> | <Factor> ('*' | '/') <Term>
-<Factor> ::= <Terminal> | <Terminal> '^' <Factor>
-<Terminal> ::= ['+' | '-'] (<Number> | <Variable> | <Constant> | <Function> | '(' <Expression> ')')
+## Grammatik 
 
-<Function> = <Identifier> '(' <Expression> ')'
-```
-## Parser - Interpreter Pattern
+TODO
 
-![](Parser.png)
 
-### Eval
+---
 
-Class using `parse()` and `interpret()` of `AbstractExpression` to parse and 
-interpret an expression.
 
-### AbstractExpression and Subclasses
+## 📋 Aufgabenstellung
 
-This parser is partly implemented and should be completed.
+Analysieren und interpretieren Sie Texte wie diesen:
+
+```json
+{
+  "name": "John",
+  "age": 42,
+  "address": {
+    "city": "Vienna"
+  }
+}
