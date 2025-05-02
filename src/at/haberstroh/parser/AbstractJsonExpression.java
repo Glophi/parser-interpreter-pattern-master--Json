@@ -20,17 +20,7 @@ public abstract class AbstractJsonExpression {
         position = 0;
     }
 
-    protected Token current() {
-        return tokens.get(position);
-    }
 
-    protected Token consume() {
-        return tokens.get(position++);
-    }
-
-    protected boolean match(String symbol) {
-        return current().getToken().equals(symbol);
-    }
 
 
     public abstract void parse() throws ParseException;

@@ -1,24 +1,28 @@
-/*
- *at.haberstroh.parser
- *parser-interpreter-pattern-master - Json
- *(c)02.05.2025, Schueler, Philip Pfaffenlehner
- */
-
 package at.haberstroh.parser;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class JsonPairList extends AbstractJsonExpression {
-    private final List<JsonPair> pairs = new ArrayList<>();
 
+    /** sammelt die Paare zwischen '{' und '}' */
+    private final Map<String, AbstractJsonExpression> members = new LinkedHashMap<>();
 
-    public void parse()  {
-
+    @Override
+    public void parse() throws ParseException {
+        // TODO: mindestens ein JsonPair einlesen
+        // TODO: Komma-getrennte Paare fortlaufend einlesen
     }
 
+    /** Liefert die gesammelten Paare an JsonObject */
+    public Map<String, AbstractJsonExpression> getMembers() {
+        return members;
+    }
 
+    @Override
     public Object interpret() {
+        // nicht benötigt, JsonObject übernimmt members direkt
         return null;
     }
 }

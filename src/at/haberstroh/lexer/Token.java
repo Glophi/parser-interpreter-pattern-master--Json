@@ -3,12 +3,20 @@ package at.haberstroh.lexer;
 import java.util.Objects;
 
 public class Token {
-    public final Tokentype type;
-    public final String text;
+    private final Tokentype type;
+    private final String text;
 
     public Token(Tokentype type, String text) {
         this.type = type;
         this.text = text;
+    }
+
+    public Tokentype getType() {
+        return type;
+    }
+
+    public String getToken() {
+        return text;
     }
 
     @Override
