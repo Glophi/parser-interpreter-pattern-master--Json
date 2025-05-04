@@ -16,10 +16,10 @@ TODO
 ````code 
 
 <JSON> ::= <Object>
-<Object> ::= '{' <pairList> '}'
-<pairList> ::= <pair> | <pair> ',' <pairList>
-<pair> ::= string ':' value
-<value> ::= string | number | object
+<Object> ::= "{" <PairList> "}"
+<PairList> ::= <Pair> | <Pair> "," <PairList>
+<Pair> ::= <String> ":" <Value>
+<Value> ::= <String> | <Number> | <Object>
 
 
 
